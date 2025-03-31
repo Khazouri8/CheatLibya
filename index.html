@@ -58,13 +58,33 @@
             <img src="calcpic3.png" alt="Image 3">
         </div>
         <div class="carousel-buttons">
-            <button class="carousel-button" onclick="prevImage()">&#10094;</button>
-            <button class="carousel-button" onclick="nextImage()">&#10095;</button>
+            <button class="carousel-button" onclick="prevImage('carouselImages', 'calc')">&#10094;</button>
+            <button class="carousel-button" onclick="nextImage('carouselImages', 'calc')">&#10095;</button>
         </div>
     </div>
 
     <p>تساعدك هذه الحاسبة في الدراسة من خلال السماح لك بحفظ الصور، الفيديوهات، والألعاب بكلمة سر سرية يمكنك تعديلها.</p>
     <p class="price">السعر: 765 LYD</p>
+    <button onclick="addToCart()">أضف إلى السلة</button>
+    
+    <hr> <!-- Separator for the new item -->
+
+    <h2>جهاز شيت ليبيا الذكي للتحكم بالأشعة تحت الحمراء - شيت ليبيا</h2>
+    
+    <div class="carousel">
+        <div class="carousel-images" id="remoteCarouselImages">
+            <img src="cheat IR.jpg" alt="صورة جهاز التحكم 1">
+            <img src="cheat IR 2.jpg" alt="صورة جهاز التحكم 2">
+            <img src="cheat IR 3.jpg" alt="صورة جهاز التحكم 3">
+        </div>
+        <div class="carousel-buttons">
+            <button class="carousel-button" onclick="prevImage('remoteCarouselImages', 'remote')">&#10094;</button>
+            <button class="carousel-button" onclick="nextImage('remoteCarouselImages', 'remote')">&#10095;</button>
+        </div>
+    </div>
+
+    <p>هذا جهاز التحكم الذكي بالأشعة تحت الحمراء يسمح لك بالتحكم في الأجهزة باستخدام هاتفك الذكي.</p>
+    <p class="price">السعر: 89 LYD</p>
     <button onclick="addToCart()">أضف إلى السلة</button>
 </div>
 
@@ -73,29 +93,38 @@
 </footer>
 
 <script>
-    let currentIndex = 0;
+    let currentIndexCalc = 0;
+    let currentIndexRemote = 0;
 
-    function showImage(index) {
-        const images = document.getElementById('carouselImages');
+    function showImage(index, carouselId) {
+        const images = document.getElementById(carouselId);
         const totalImages = images.children.length;
         if (index >= totalImages) {
-            currentIndex = 0;
+            index = 0;
         } else if (index < 0) {
-            currentIndex = totalImages - 1;
-        } else {
-            currentIndex = index;
+            index = totalImages - 1;
         }
 
-        const offset = -currentIndex * 100; // Adjust for image width
+        const offset = -index * 100; // Adjust for image width
         images.style.transform = `translateX(${offset}%)`;
+
+        return index; // return the current index
     }
 
-    function nextImage() {
-        showImage(currentIndex + 1);
+    function nextImage(carouselId) {
+        if (carouselId === 'carouselImages') {
+            currentIndexCalc = showImage(++currentIndexCalc, carouselId);
+        } else if (carouselId === 'remoteCarouselImages') {
+            currentIndexRemote = showImage(++currentIndexRemote, carouselId);
+        }
     }
 
-    function prevImage() {
-        showImage(currentIndex - 1);
+    function prevImage(carouselId) {
+        if (carouselId === 'carouselImages') {
+            currentIndexCalc = showImage(--currentIndexCalc, carouselId);
+        } else if (carouselId === 'remoteCarouselImages') {
+            currentIndexRemote = showImage(--currentIndexRemote, carouselId);
+        }
     }
 
     function addToCart() {
