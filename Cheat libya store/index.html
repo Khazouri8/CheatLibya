@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheat Libya - تشيت ليبيا</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="Cheat Libya (1).png" alt="شعار Cheat Libya" class="logo">
+</header>
+
+<div class="container">
+    <h2>حاسبة Cheat Libya الذكية</h2>
+    
+    <div class="carousel">
+        <div class="carousel-images" id="carouselImages">
+            <img src="calcpic1.png" alt="Image 1">
+            <img src="calcpic2.png" alt="Image 2">
+            <img src="calcpic3.png" alt="Image 3">
+        </div>
+        <div class="carousel-buttons">
+            <button class="carousel-button" onclick="prevImage('carouselImages', 'calc')">&#10094;</button>
+            <button class="carousel-button" onclick="nextImage('carouselImages', 'calc')">&#10095;</button>
+        </div>
+    </div>
+
+    <p>تساعدك هذه الحاسبة في الدراسة من خلال السماح لك بحفظ الصور، الفيديوهات، والألعاب بكلمة سر سرية يمكنك تعديلها.</p>
+    <p class="price">السعر: 765 LYD</p>
+    <button onclick="addToCart()">أضف إلى السلة</button>
+    
+    <hr> <!-- Separator for the new item -->
+
+    <h2>جهاز شيت ليبيا الذكي للتحكم بالأشعة تحت الحمراء - شيت ليبيا</h2>
+    
+    <div class="carousel">
+        <div class="carousel-images" id="remoteCarouselImages">
+            <img src="cheat IR.jpg" alt="صورة جهاز التحكم 1">
+            <img src="cheat IR 2.jpg" alt="صورة جهاز التحكم 2">
+            <img src="cheat IR 3.jpg" alt="صورة جهاز التحكم 3">
+        </div>
+        <div class="carousel-buttons">
+            <button class="carousel-button" onclick="prevImage('remoteCarouselImages', 'remote')">&#10094;</button>
+            <button class="carousel-button" onclick="nextImage('remoteCarouselImages', 'remote')">&#10095;</button>
+        </div>
+    </div>
+
+    <p>هذا جهاز التحكم الذكي بالأشعة تحت الحمراء يسمح لك بالتحكم في الأجهزة باستخدام هاتفك الذكي.</p>
+    <p class="price">السعر: 89 LYD</p>
+    <button onclick="addToCart()">أضف إلى السلة</button>
+</div>
+
+<footer>
+    <p>جميع الحقوق محفوظة &copy; 2025 Cheat Libya</p>
+</footer>
+
+<script>
+    let currentIndexCalc = 0;
+    let currentIndexRemote = 0;
+
+    function showImage(index, carouselId) {
+        const images = document.getElementById(carouselId);
+        const totalImages = images.children.length;
+        if (index >= totalImages) {
+            index = 0;
+        } else if (index < 0) {
+            index = totalImages - 1;
+        }
+
+        const offset = -index * 100; // Adjust for image width
+        images.style.transform = `translateX(${offset}%)`;
+
+        return index; // return the current index
+    }
+
+    function nextImage(carouselId) {
+        if (carouselId === 'carouselImages') {
+            currentIndexCalc = showImage(++currentIndexCalc, carouselId);
+        } else if (carouselId === 'remoteCarouselImages') {
+            currentIndexRemote = showImage(++currentIndexRemote, carouselId);
+        }
+    }
+
+    function prevImage(carouselId) {
+        if (carouselId === 'carouselImages') {
+            currentIndexCalc = showImage(--currentIndexCalc, carouselId);
+        } else if (carouselId === 'remoteCarouselImages') {
+            currentIndexRemote = showImage(--currentIndexRemote, carouselId);
+        }
+    }
+
+    function addToCart() {
+        window.location.href = "info.html"; // Redirect to the info page
+    }
+</script>
+
+</body>
+</html>
